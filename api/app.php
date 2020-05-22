@@ -4,7 +4,7 @@ include_once '../vendor/autoload.php';
 
 use \Firebase\JWT\JWT;
 
-$con = new mysqli('sql12.freemysqlhosting.net','sql12338557','K1hG1i8unj','sql12338557');
+$con = new mysqli('db4free.net','fypfacerecog','b436a8bf','fypfacerecog');
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['id'])){ //retrieve single row
