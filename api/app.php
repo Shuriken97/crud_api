@@ -25,15 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $data = json_decode(file_get_contents("php://input"));
     $uname = $data->username;
-    $pass = $data->pass;
+    $password = $data->password;
     $sql = $con->query("SELECT * FROM admin WHERE username = '$uname'");
     if($sql->num_rows > 0) {
         $user = $sql->fetch_assoc();
-        if(password_verify($pass, $user['pass'])) {
+        if(password_verify($password, $user['pass'])) {
             $key = "YOUR_SECRET_KEY";
             $payload = array(
-                'id' => $user['admin_id'],
-                'username' => $user['username']
+                'admin_id' => $user['admin_id']
             );
 
             $token = JWT::encode($payload, $key);
