@@ -9,7 +9,7 @@ $con = new mysqli('us-cdbr-east-05.cleardb.net','b2bc2043d3485c','9a9fcb24','her
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['id'])){ //retrieve single row
         $id = $con->real_escape_string($_GET['id']);
-        $sql = $con->query("SELECT attendance.atten_id, students.name, attendance.sub_name,CONVERT_TZ(attendance.create_time,'+00:00','+08:30') FROM attendance JOIN students ON students.name = attendance.name WHERE atten_id='$id'");
+        $sql = $con->query("SELECT attendance.atten_id, students.name, attendance.sub_name,attendance.create_time FROM attendance JOIN students ON students.name = attendance.name WHERE atten_id='$id'");
         $data = $sql->fetch_assoc();
     } else { //retrieve all rows
         $data = array();
