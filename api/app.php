@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
         $data = $sql->fetch_assoc();
     } else { //retrieve all rows
         $data = array();
-        $sql = $con->query("SELECT attendance.atten_id, students.name, attendance.sub_name, attendance.create_time FROM attendance JOIN students ON students.name = attendance.name");
+        $sql = $con->query("SELECT attendance.atten_id, students.name, attendance.sub_name, CONVERT_TZ(attendance.create_time,'+00:00','+08:30') FROM attendance JOIN students ON students.name = attendance.name");
         while ($d = $sql->fetch_assoc()){
             $data[] = $d;
         }
