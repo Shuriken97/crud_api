@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $sql = $con->query("SELECT * FROM admin WHERE username = '$uname'");
     if($sql->num_rows > 0) {
         $user = $sql->fetch_assoc();
-        if(password_verify($password, $user['pass'])) {
+        if ($password == $user['pass']) {
             $key = "YOUR_SECRET_KEY";
             $payload = array(
                 'admin_id' => $user['admin_id']
